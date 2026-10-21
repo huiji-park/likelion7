@@ -1,0 +1,1046 @@
+{
+ "tables": [
+  {
+   "tbl_id": "DT_1B08024",
+   "tbl_nm": "인구밀도(인구주택총조사기준) - 시도",
+   "prd_se_meta": "년",
+   "n_obj": 1,
+   "mode": "ALL",
+   "n_rows": 36,
+   "n_numeric": 36,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 32,
+   "min": 90.2,
+   "max": 15425.0,
+   "periods": [
+    "2024",
+    "2025"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명/㎢"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1BD9501",
+   "tbl_nm": "시도/거처의 종류/사용방수/전세금별 가구(주거전용)",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 8667,
+   "n_numeric": 6520,
+   "n_nonnumeric": 2147,
+   "nonnumeric_tokens": {
+    "'-'": 2147
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 3497069.0,
+   "periods": [
+    "1995"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1BD9503",
+   "tbl_nm": "시도/거처의 종류/사용방수/사글세별 가구(주거전용)",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 7083,
+   "n_numeric": 4751,
+   "n_nonnumeric": 2332,
+   "nonnumeric_tokens": {
+    "'-'": 2332
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 308242.0,
+   "periods": [
+    "1995"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1BOOO02",
+   "tbl_nm": "행정구역/성/연령별 1인가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 13188,
+   "n_numeric": 13188,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 971,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 2224433.0,
+   "periods": [
+    "2000"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 14,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1EC900F",
+   "tbl_nm": "시도/세대구성/가구주의 직업별 가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 6156,
+   "n_numeric": 6156,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 270,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 9272291.0,
+   "periods": [
+    "1990"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA5501",
+   "tbl_nm": "시도별 가구 및 가구원",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 176,
+   "n_numeric": 176,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 23.0,
+   "max": 21526374.0,
+   "periods": [
+    "1955"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "(빈값)"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA7001",
+   "tbl_nm": "시도/세대구성/가구원수별 가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 8064,
+   "n_numeric": 7140,
+   "n_nonnumeric": 924,
+   "nonnumeric_tokens": {
+    "'-'": 924
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 29235734.0,
+   "periods": [
+    "1970"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구",
+    "명"
+   ],
+   "n_items": 12,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA7505",
+   "tbl_nm": "시도/거처의종류/성/연령별 가구주",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 3897,
+   "n_numeric": 3859,
+   "n_nonnumeric": 38,
+   "nonnumeric_tokens": {
+    "'-'": 38
+   },
+   "n_zero": 4,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 6754257.0,
+   "periods": [
+    "1975"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 3,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA8005",
+   "tbl_nm": "행정구역/거처의 종류/점유형태별 가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 12470,
+   "n_numeric": 11451,
+   "n_nonnumeric": 1019,
+   "nonnumeric_tokens": {
+    "'-'": 1019
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 7969201.0,
+   "periods": [
+    "1980"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "호"
+   ],
+   "n_items": 5,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA8509",
+   "tbl_nm": "시도/세대구성/가구원수별 가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 10296,
+   "n_numeric": 7716,
+   "n_nonnumeric": 2580,
+   "nonnumeric_tokens": {
+    "'-'": 2580
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 39121522.0,
+   "periods": [
+    "1985"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구",
+    "명"
+   ],
+   "n_items": 13,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GA9005",
+   "tbl_nm": "시도/세대구성/가구원수별 가구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 10764,
+   "n_numeric": 10764,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 3011,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 42101544.0,
+   "periods": [
+    "1990"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구",
+    "명"
+   ],
+   "n_items": 13,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GAOO08",
+   "tbl_nm": "행정구역/가구주의 성/연령/거처의 종류별 총조사가구(일반가구)",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "objL1 first 3 top codes",
+   "n_rows": 1944,
+   "n_numeric": 1944,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 77,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 14311807.0,
+   "periods": [
+    "2000"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 12,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1GO0528",
+   "tbl_nm": "세대구성/거처의 종류별 고령자(65세이상) 거주 가구수(일반가구)-시도",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 11328,
+   "n_numeric": 11328,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 1284,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 3371277.0,
+   "periods": [
+    "2005"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 8,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN0001_39",
+   "tbl_nm": "제주도 총조사인구 총괄(읍면동/성/연령별)",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "objL1 first 3 top codes",
+   "n_rows": 874,
+   "n_numeric": 874,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 6,
+   "n_negative": 0,
+   "n_decimal": 209,
+   "min": 0.0,
+   "max": 530686.0,
+   "periods": [
+    "2005",
+    "2010"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "(빈값)",
+    "명"
+   ],
+   "n_items": 4,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN0508",
+   "tbl_nm": "연령/성/혼인상태별 인구(15세이상)-시군구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "objL1 first 3 top codes",
+   "n_rows": 3870,
+   "n_numeric": 3870,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 53,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 38055306.0,
+   "periods": [
+    "2005"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 15,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN2507",
+   "tbl_nm": "개항수면 국적별 인구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 145,
+   "n_numeric": 145,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 15405.0,
+   "periods": [
+    "1925"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 3,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN3020",
+   "tbl_nm": "행정구역/성/연령별 본업유업자",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 3024,
+   "n_numeric": 3024,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 2.0,
+   "max": 21058305.0,
+   "periods": [
+    "1930"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 2,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN3503",
+   "tbl_nm": "도/성/인구규모별 인구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 1041,
+   "n_numeric": 1041,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 1,
+   "n_negative": 0,
+   "n_decimal": 205,
+   "min": 0.0,
+   "max": 22899038.0,
+   "periods": [
+    "1935"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "개",
+    "명",
+    "여자백명당남자수"
+   ],
+   "n_items": 5,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN4007",
+   "tbl_nm": "시도/성/특수연령/산업별 인구",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 2301,
+   "n_numeric": 2301,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 6395967.0,
+   "periods": [
+    "1940"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN4403",
+   "tbl_nm": "시도/성/연령/종사상지위별 조선인",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 13724,
+   "n_numeric": 13724,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 25120174.0,
+   "periods": [
+    "1944"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 3,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN4901",
+   "tbl_nm": "행정구역/내·외국인 및 성별 인구",
+   "prd_se_meta": "5년",
+   "n_obj": 1,
+   "mode": "ALL",
+   "n_rows": 12532,
+   "n_numeric": 12532,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 20188641.0,
+   "periods": [
+    "1949"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1IN5511",
+   "tbl_nm": "시도/연령/학력/성별 완전실업자(18세이상)",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 2702,
+   "n_numeric": 2702,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 117696.0,
+   "periods": [
+    "1955"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 3,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1PE1509",
+   "tbl_nm": "타지 주택 소유별/거처의 점유형태별 가구(일반가구)-시군구",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 6867,
+   "n_numeric": 6853,
+   "n_nonnumeric": 14,
+   "nonnumeric_tokens": {
+    "'-'": 14
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 19111731.0,
+   "periods": [
+    "2015"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "(빈값)"
+   ],
+   "n_items": 7,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1PH1023",
+   "tbl_nm": "가구원수 및 교통수단 보유현황별 가구(일반가구)-시도",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 11800,
+   "n_numeric": 11800,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 195,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 17341966.0,
+   "periods": [
+    "2010"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 25,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1PI1505",
+   "tbl_nm": "월세금별/보증금 규모별 가구(일반가구, 주거전용)-시도",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 8430,
+   "n_numeric": 7427,
+   "n_nonnumeric": 1003,
+   "nonnumeric_tokens": {
+    "'-'": 1003
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 4237996.0,
+   "periods": [
+    "2015"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 15,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1PK1513",
+   "tbl_nm": "일상생활·사회활동 활동제약 유형별 인구(5세 이상)-시군구",
+   "prd_se_meta": "5년",
+   "n_obj": 1,
+   "mode": "ALL",
+   "n_rows": 2289,
+   "n_numeric": 2289,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 65.0,
+   "max": 47188096.0,
+   "periods": [
+    "2015"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "(빈값)"
+   ],
+   "n_items": 7,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1PO1501",
+   "tbl_nm": "연령별/첫 출산연령별 기혼여성인구(15세이상)-시도",
+   "prd_se_meta": "5년",
+   "n_obj": 2,
+   "mode": "ALL",
+   "n_rows": 8780,
+   "n_numeric": 6646,
+   "n_nonnumeric": 2134,
+   "nonnumeric_tokens": {
+    "'-'": 2134
+   },
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 1.0,
+   "max": 15929044.0,
+   "periods": [
+    "2015"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "(빈값)"
+   ],
+   "n_items": 10,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1SA6605",
+   "tbl_nm": "시도/산업(대분류)/교육정도/성별 경제활동인구",
+   "prd_se_meta": "5년",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 10473,
+   "n_numeric": 10473,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 6,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 16108330.0,
+   "periods": [
+    "1966"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1SC1004",
+   "tbl_nm": "거처종류별/주거시설형태별 일반가구수",
+   "prd_se_meta": "부정기",
+   "n_obj": 3,
+   "mode": "ALL",
+   "n_rows": 832,
+   "n_numeric": 832,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 356,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 44523.0,
+   "periods": [
+    "2013"
+   ],
+   "prd_se_resp": [
+    "IR"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1SC1010",
+   "tbl_nm": "가구주의 성별/연령별/세대구성별 일반가구수",
+   "prd_se_meta": "부정기",
+   "n_obj": 4,
+   "mode": "ALL",
+   "n_rows": 5301,
+   "n_numeric": 5301,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 1703,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 44523.0,
+   "periods": [
+    "2013"
+   ],
+   "prd_se_resp": [
+    "IR"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1SL1003",
+   "tbl_nm": "성별/연령별/혼인상태별 1인가구수(15세이상)",
+   "prd_se_meta": "부정기",
+   "n_obj": 4,
+   "mode": "ALL",
+   "n_rows": 960,
+   "n_numeric": 960,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 157,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 14606.0,
+   "periods": [
+    "2013"
+   ],
+   "prd_se_resp": [
+    "IR"
+   ],
+   "units": [
+    "가구"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1SN1005",
+   "tbl_nm": "성별/연령별/가구주와의 관계별 인구",
+   "prd_se_meta": "부정기",
+   "n_obj": 4,
+   "mode": "ALL",
+   "n_rows": 3420,
+   "n_numeric": 3420,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 1104,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 108706.0,
+   "periods": [
+    "2013"
+   ],
+   "prd_se_resp": [
+    "IR"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 1,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1TS1003",
+   "tbl_nm": "2010년 행정구역 기준 주택수 추이(2000~2010)",
+   "prd_se_meta": "년",
+   "n_obj": 1,
+   "mode": "objL1 first 3 top codes",
+   "n_rows": 24,
+   "n_numeric": 24,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 0,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 24435.0,
+   "max": 14677419.0,
+   "periods": [
+    "2005",
+    "2010"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "호"
+   ],
+   "n_items": 6,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1TS2001",
+   "tbl_nm": "2010년 행정구역 기준 인구 추이(1975~2010)",
+   "prd_se_meta": "년",
+   "n_obj": 1,
+   "mode": "ALL",
+   "n_rows": 4446,
+   "n_numeric": 4446,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 1,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 48580293.0,
+   "periods": [
+    "2005",
+    "2010"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "명"
+   ],
+   "n_items": 9,
+   "dup_keys": 0
+  },
+  {
+   "tbl_id": "DT_1TS2007",
+   "tbl_nm": "2010년 행정구역 기준 주택수 추이(1990~2010)",
+   "prd_se_meta": "년",
+   "n_obj": 1,
+   "mode": "ALL",
+   "n_rows": 2964,
+   "n_numeric": 2964,
+   "n_nonnumeric": 0,
+   "nonnumeric_tokens": {},
+   "n_zero": 11,
+   "n_negative": 0,
+   "n_decimal": 0,
+   "min": 0.0,
+   "max": 13883571.0,
+   "periods": [
+    "2005",
+    "2010"
+   ],
+   "prd_se_resp": [
+    "A"
+   ],
+   "units": [
+    "호"
+   ],
+   "n_items": 6,
+   "dup_keys": 0
+  }
+ ],
+ "failed": [
+  {
+   "tbl_id": "DT_1BC0503",
+   "error": "31:  40,000셀을 초과한 결과값은 요청하실 수 없습니다."
+  }
+ ],
+ "cols": {
+  "C1_OBJ_NM": 200868,
+  "DT": 200868,
+  "C1": 200868,
+  "PRD_SE": 200868,
+  "ITM_ID": 200868,
+  "TBL_ID": 200868,
+  "ITM_NM": 200868,
+  "TBL_NM": 200868,
+  "PRD_DE": 200868,
+  "LST_CHN_DE": 200868,
+  "C1_NM_ENG": 200868,
+  "C1_NM": 200868,
+  "ORG_ID": 200868,
+  "C1_OBJ_NM_ENG": 200868,
+  "ITM_NM_ENG": 182932,
+  "UNIT_NM_ENG": 182539,
+  "UNIT_NM": 182539,
+  "C2": 178577,
+  "C2_NM": 178577,
+  "C2_OBJ_NM": 178577,
+  "C2_OBJ_NM_ENG": 171710,
+  "C2_NM_ENG": 171710,
+  "C3_NM": 64328,
+  "C3_OBJ_NM_ENG": 64328,
+  "C3": 64328,
+  "C3_NM_ENG": 64328,
+  "C3_OBJ_NM": 64328,
+  "C4_NM": 9681,
+  "C4_OBJ_NM_ENG": 9681,
+  "C4": 9681,
+  "C4_NM_ENG": 9681,
+  "C4_OBJ_NM": 9681
+ },
+ "tokens": {
+  "'-'": 12191
+ },
+ "prd_formats": {
+  "9999": 200868
+ },
+ "prd_se": {
+  "A": 190355,
+  "IR": 10513
+ },
+ "units": {
+  "가구": 102521,
+  "명": 64108,
+  "(빈값)": 18329,
+  "호": 15458,
+  "개": 208,
+  "여자백명당남자수": 208,
+  "명/㎢": 36
+ },
+ "lst_chn_empty": 65120,
+ "rows": 200868,
+ "n_tables_ok": 35,
+ "n_tables_failed": 1,
+ "tables_with_nonnumeric": 9,
+ "tables_with_zero": 17,
+ "tables_with_decimal": 3,
+ "tables_with_negative": 0,
+ "tables_with_dup_keys": 0
+}

@@ -1,0 +1,14 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# data
+data/raw/
+data/cache/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/

@@ -38,9 +38,9 @@
 | 날짜 | 작업 | 담당 | 브랜치 | 상태 | 보고서 | 결정·메모 |
 |---|---|---|---|---|---|---|
 | 2026-10-21 | KOSIS OpenAPI 수치 조회 스크립트 | data | `data/api-check` | 리뷰 대기 | 없음 | 사용자 요청으로 보고서 없이 스크립트만 (산출물 규칙 예외). 키는 `.env`에서 읽음 |
-| 2026-10-21 | 인구총조사 목록·메타 전수·수치 표본 수집 + EDA | data | `data/census-eda` | 리뷰 대기 (사실 검수 중) | `docs/reports/data/2026-10-21_census-eda.md` | 목록 1,901표(주제별)/1,897(기관별). 1,876 = `STAT_ID=1962001` 건수와 일치, 차이 25건은 세종시 2013(22)·시계열 연계(3). `meta_tables.jsonl` 4.2MB는 커밋 허용(검색 입력 원본, 재수집 38분 소요) |
+| 2026-10-21 | 인구총조사 목록·메타 전수·수치 표본 수집 + EDA | data | `data/census-eda` | 리뷰 대기 (검수 조건부 통과) | `docs/reports/data/2026-10-21_census-eda.md` | 목록 1,901표(주제별)/1,897(기관별). 1,876 = `STAT_ID=1962001` 건수와 일치, 차이 25건은 세종시 2013(22)·시계열 연계(3). `meta_tables.jsonl` 4.2MB는 커밋 허용(검색 입력 원본, 재수집 38분 소요) |
 | 2026-10-22 | 모듈 인터페이스 계약 v0.1 | lead | `lead/interfaces` | 리뷰 대기 | `docs/interfaces.md` | MetaRecord는 census-eda 정제본 필드명 채택. `-`/`0` 구분, 5년 주기 `prdSe=F`, 40,000셀 분할을 계약에 명시 |
-| 2026-10-22 | 인구총조사 EDA 사실 검수 | factcheck | `factcheck/census-eda` | 진행 | `docs/reports/factcheck/2026-10-22_census-eda.md` | 수치 재계산·키 노출·커밋 범위 점검 |
+| 2026-10-22 | 인구총조사 EDA 사실 검수 | factcheck | `factcheck/census-eda` | 리뷰 대기 | `docs/reports/factcheck/2026-10-22_census-eda.md` | 조건부 통과(치명 0·주의 2·제안 4). 약 45개 수치 재계산 일치, 키 노출 0건. 주의: 4.7 최대값은 `DT_1TS2001` 48,580,293(보고서는 `DT_1PK1513` 4.7천만으로 기재, 리드 재확인), `client.py` `DEFAULT_ENV` 절대경로 하드코딩 → data 후속 작업에서 수정 |
 
 ## 결정 대기 (사용자)
 | 항목 | 선택지 | 리드 의견 |

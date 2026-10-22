@@ -28,7 +28,7 @@
 
 ### 사전 점검
 - [x] KOSIS API 인증 및 호출 가능 여부 — 목록·메타·수치 API 모두 호출 확인 (`data/census-eda`, 분당 200건 제한 확인)
-- [ ] HCX API 사용 및 접근 방법 — 키 수령 여부 사용자 확인 필요
+- [x] HCX API 사용 및 접근 방법 — CLOVA Studio v3 `POST https://clovastudio.stream.ntruss.com/v3/chat-completions/{model}`, `Authorization: Bearer $HCX_API_KEY`. HCX-005·HCX-DASH-002 응답 확인, HCX-007(추론형)은 `maxTokens` 대신 `maxCompletionTokens` 필요하고 추론 토큰을 소모함 (2026-10-22)
 - [x] Python 3.12 및 라이브러리 실행 환경 — uv venv 3.12.14 + `requirements.txt` (`data/census-eda`)
 
 ## 날짜별 로그
@@ -49,4 +49,4 @@
 ## 결정 대기 (사용자)
 | 항목 | 선택지 | 리드 의견 |
 |---|---|---|
-| HCX API | 키 수령 여부, 엔드포인트·모델명 | 키 없으면 요약은 템플릿 문장으로 먼저 개발 |
+| 요약용 HCX 모델 | HCX-005 / HCX-DASH-002 / HCX-007 | 기본 HCX-005(근거 기반 요약, 추론 토큰 없음). 비용·속도 비교는 ai-engineer 실험에서 |

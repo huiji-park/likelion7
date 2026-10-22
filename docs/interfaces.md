@@ -1,12 +1,12 @@
-# 모듈 인터페이스 계약 (v0.1)
+# 모듈 인터페이스 계약 (v0.2)
 
 > project-lead만 수정한다. 바꿔야 할 필드·시그니처가 있으면 보고서에 제안을 적고 리드에게 요청한다.
-> 작성: 2026-10-22 · 기준: `data/census-eda` 브랜치의 정제본 `data/processed/meta_tables.jsonl` 필드명을 그대로 표준으로 채택했다.
+> 작성: 2026-10-22 · 기준 메타: 사용자 제공 인구 카탈로그 `population_table_catalog.jsonl`(2,364표).
 
 ## 0. 공통 원칙
 - 모든 수치는 `DataRow`(3절)에서 출발한다. 분석·요약·차트는 `DataRow`의 키(`row_key`)로 원본을 가리키며, 새 숫자를 만들지 않는다.
 - 수치 계산은 `src/analysis/`의 코드가 한다. LLM 입력에는 `AnalysisResult`의 결과값만 넣고, LLM 출력의 숫자는 이 값과 대조한다(7절).
-- 출처는 최소 `(survey, tbl_nm, tbl_id, org_id)` 네 가지를 항상 함께 들고 다닌다 → `Source` 객체.
+- 출처는 최소 `(survey_name, table_name, tbl_id, org_id)` 네 가지를 항상 함께 들고 다닌다 → `Source` 객체.
 - 문자열은 UTF-8, JSON 파일은 `ensure_ascii=False`. 시점은 KOSIS 표기 그대로 문자열(`"2020"`, `"202403"`, `"2024Q1"` 아님 → 아래 표기 규칙).
 - API 키는 `src/kosis/client.get_key()`로만 읽는다. 어떤 객체·로그·캐시 키에도 넣지 않는다.
 - 코드는 dataclass 또는 TypedDict로 구현하고 JSON 직렬화가 가능해야 한다. 필드 추가는 허용(하위 호환), 이름 변경·삭제는 리드 승인.
@@ -14,9 +14,9 @@
 ## 1. 디렉터리와 담당
 | 경로 | 내용 | 담당 |
 |---|---|---|
-| `src/kosis/client.py` | KOSIS 호출(캐시·재시도·마스킹) — **존재** | data |
+| `src/kosis/client.py` | KOSIS 호출(캐시·재시도·마스킹). `data/census-eda`의 코드를 이어받는다 | data |
 | `src/kosis/fetch.py` | `DataRequest` → `DataResult` 변환(표준화, 40,000셀 분할) | data |
-| `src/meta/` | 목록·메타 수집, 정제(`MetaRecord` 생성) — **존재** | data |
+| `src/meta/` | 카탈로그 전처리, getMeta 보강, `load_meta()` | data |
 | `src/pipeline/query.py` | 질문 → `ParsedQuery` | ai |
 | `src/search/` | `ParsedQuery` → `TableCandidate[]` | ai |
 | `src/analysis/` | `DataResult` → `AnalysisResult[]` | ai |
@@ -25,32 +25,51 @@
 | `src/chart/` | `ChartSpec` + `DataResult` → 이미지/Plotly figure | service |
 | `app/` | UI, 백엔드 API | service |
 | `eval/` | 골든셋, 평가 코드 | eval |
+| `data/source/` | 사용자 제공 원본(`population.xls`) — 커밋 | data |
 | `data/processed/` | 커밋되는 정제본 / `data/raw`, `data/cache`, `data/logs`는 커밋 금지 | data |
 
-## 2. MetaRecord — 정제 메타데이터 (`data/processed/meta_tables.jsonl`, 1줄 1표)
+## 2. 통계표 메타데이터
+기준 데이터는 사용자가 제공한 **KOSIS 주제별통계 > 인구 카탈로그**다(2,364표, 14개 조사, 기관 5곳). 이전 `data/census-eda`의 `meta_tables.jsonl`(1,901표, 인구총조사 폴더 탐색 결과)은 기준으로 쓰지 않는다(2026-10-22 결정).
+
+### 2.1 TableCatalog — 기준 목록 (`data/processed/population_table_catalog.jsonl`, 1줄 1표)
+생성: `src/meta/preprocess_population.py` ← 원본 `data/source/population.xls`. KOSIS API를 호출하지 않는다.
 | 필드 | 타입 | 설명 |
 |---|---|---|
-| `org_id` | str | 기관 ID (인구총조사 `"101"`) |
+| `org_id` | str | 기관 ID (`101` 국가데이터처, `110` 행정안전부, `111` 법무부, `182` 재외동포청, `358` 한국보건산업진흥원) |
 | `tbl_id` | str | 통계표 ID. **(org_id, tbl_id)가 기본키** |
-| `tbl_nm` | str | 통계표명 원문 |
-| `tbl_nm_eng` | str \| null | 영문 표명 |
-| `stat_id` | str | 조사 ID (목록 `STAT_ID`) |
-| `survey` | str | 조사명 (14개 조사 중 하나, 예: `"인구총조사"`) |
-| `path`, `path_parts`, `path_depth` | str, list[str], int | KOSIS 주제 경로 |
-| `section`, `name_group` | str | 경로 3·4번째 단계(부문, 조사연도 폴더). **조사 연도는 표명이 아니라 여기에 있다** |
-| `send_de` | str | 최종 갱신일 `YYYY-MM-DD` |
-| `prd` | list[{se, start, end}] | 주기별 수록기간 |
-| `prd_se_main` | str | 대표 주기(한글: `5년`/`년`/`부정기`/`월`/`분기`/`반기`) |
-| `start_prd`, `end_prd` | str | 수록 시작·끝 시점 |
+| `table_name` | str | 통계표명 원문 |
+| `survey_name` | str | 조사명 (14개 중 하나, 예: `"인구총조사"`) |
+| `organization` | str | 작성기관명 |
+| `topic` | str | `"인구"` |
+| `source_text` | str | 출처 원문 `국가데이터처,「인구총조사」` |
+| `period` | str | 수록기간 원문 `년 (2015 ~ 2025)` |
+| `catalog_periods` | list[{frequency_label, start, end}] | 주기별 수록기간. 한 표에 주기가 여러 개일 수 있다 |
+| `paths` | list[{level, path, list_id_path, list_id, kosis_table_url, source_row}] | 메뉴 경로. 한 표가 경로 2개 이상인 경우가 있다(7표) |
+
+주기 라벨 → 수치 조회 요청 코드(`prdSe`): `년→Y`, `5년→F`, `2년→F`, `월→M`, `분기→Q`, `반기→H`, `부정기→IR`, `IR→IR`. 5년 주기 표에 `Y`를 보내면 err 30이 난다. `2년`은 실제 호출로 확인 필요.
+
+### 2.2 TableMeta — API 보강 (`data/processed/table_meta.jsonl`, 1줄 1표)
+카탈로그에 없는 분류·항목·단위를 `getMeta`(type=ITM, 필요 시 TBL·PRD)로 보강한다.
+| 필드 | 타입 | 설명 |
+|---|---|---|
+| `org_id`, `tbl_id` | str | 2.1과 조인 키 |
+| `meta_ok` | bool | 보강 성공 여부 |
 | `n_obj`, `obj_names`, `obj_sizes` | int, list[str], list[int] | 분류(objL1..) 이름·값 개수 (순서 = objL 번호) |
 | `items` | list[{id, nm, unit, unit_id}] | 항목. 단위는 **항목별**이며 빈 문자열 가능 |
 | `n_items`, `units` | int, list[str] | |
 | `est_cells_per_period` | int | 시점 1개당 추정 셀 수(상한). 40,000 초과면 분류값 지정 필수 |
-| `search_text` | str | 검색용 정규화 텍스트(NFKC, 표명+경로+분류명+항목명) |
-| `meta_ok` | bool | 메타 수집 성공 여부 |
-| 조사별 확장 필드 | — | 예: 인구총조사 `in_1876`, `in_otitle_view`. 공통 로직에서 의존하지 않는다 |
+| `send_de` | str \| null | 최종 갱신일 (`statisticsList` 또는 TBL 메타에서) |
 
-분류값 목록(코드·이름·`UP_ITM_ID`)은 용량 때문에 별도 파일로 둔다: `data/processed/obj_values/<org_id>_<tbl_id>.json` (형식 `{ "objL1": [{"code","nm","up"}...], ... }`). 지금은 `data/raw/meta_compact.jsonl`에만 있으므로 data-engineer가 생성기를 추가한다(작업 D-2).
+분류값 목록(코드·이름·`UP_ITM_ID`)은 `data/processed/obj_values/<org_id>_<tbl_id>.json` (형식 `{ "objL1": [{"code","nm","up"}...], ... }`).
+
+### 2.3 MetaRecord — 검색·조회 모듈이 쓰는 결합 레코드
+`src/meta/load.py :: load_meta() -> list[MetaRecord]` = 2.1 ⨝ 2.2 (기본키 조인) + 파생 필드:
+| 파생 필드 | 설명 |
+|---|---|
+| `prd_se_codes` | `catalog_periods`의 요청 코드 목록 |
+| `section`, `name_group` | 첫 경로의 4·5번째 단계(부문, 조사연도 폴더). **조사 연도는 표명이 아니라 경로에 있는 경우가 많다** |
+| `search_text` | NFKC 정규화 텍스트: 표명 + 조사명 + 모든 경로 + 분류명 + 항목명 |
+보강이 실패한 표(`meta_ok=false`)도 검색 대상에는 남기고, 조회 단계에서 `API_ERROR`로 처리한다.
 
 ## 3. 수치 조회
 ### 3.1 DataRequest
@@ -64,14 +83,14 @@ DataRequest(
     obj_filters: dict[str, list[str]] = {},  # {"objL1": ["00","11"], ...}; 미지정 분류는 "ALL"
 )
 ```
-- 메타 한글 주기 → 요청 코드: `5년→F`, `년→Y`, `부정기→IR`, `월→M`, `분기→Q`, `반기→H`. 5년 주기 표에 `Y`를 보내면 err 30이 난다(EDA 4.7).
+- 주기 라벨 → 요청 코드는 2.1 표를 따른다.
 - `est_cells_per_period × 시점 수 > 40,000`이면 `fetch.py`가 분류값을 쪼개 여러 번 호출하고 합친다. 쪼개도 불가하면 `KosisError("31")`을 올리고 `DataResult.warnings`에 남긴다.
 
 ### 3.2 DataRow (표준 수치 1행)
 | 필드 | 타입 | 설명 |
 |---|---|---|
 | `row_key` | str | `f"{tbl_id}|{prd_de}|{itm_id}|{c1}|{c2}|..."` (빈 분류 생략). 분석·요약이 원본을 가리키는 키 |
-| `org_id`, `tbl_id`, `tbl_nm` | str | |
+| `org_id`, `tbl_id`, `table_name` | str | |
 | `prd_de` | str | 시점: 년 `YYYY`, 월 `YYYYMM`, 분기 `YYYYQ`(KOSIS 원문 그대로) |
 | `prd_se_req`, `prd_se_resp` | str | 요청 코드와 응답 `PRD_SE`(5년 주기는 `A`로 돌아옴) — 둘 다 보관 |
 | `itm_id`, `itm_nm` | str | 항목 |
@@ -89,7 +108,7 @@ DataRequest(
 DataResult(request: DataRequest, rows: list[DataRow], source: Source,
            fetched_at: str,          # ISO8601
            from_cache: bool, partial: bool, warnings: list[str])
-Source(survey: str, tbl_nm: str, tbl_id: str, org_id: str,
+Source(survey_name: str, table_name: str, tbl_id: str, org_id: str,
        url: str)                     # KOSIS 통계표 화면 URL(키 없음):
                                      # https://kosis.kr/statHtml/statHtml.do?orgId={org_id}&tblId={tbl_id}
 ```
@@ -114,7 +133,7 @@ ParsedQuery(
 
 ### 4.2 TableCandidate
 ```python
-TableCandidate(org_id, tbl_id, tbl_nm, survey, path, name_group,
+TableCandidate(org_id, tbl_id, table_name, survey_name, path, name_group,
                period: str,          # "2015~2025 (년)"
                score: float, rank: int,
                reasons: list[str],   # 매칭 근거(키워드·분류·기간)
@@ -159,7 +178,7 @@ Answer(
 ```
 함수: `src/llm/summarize.py :: summarize(q, analyses, table, state) -> Answer`
 - `text` 안의 모든 숫자는 `numbers`(또는 `DataRow.value`)에서 온 것이어야 한다. 대조 실패 시 LLM 문장 대신 템플릿 문장으로 대체한다.
-- 응답 끝에 출처 줄: `출처: {survey} 「{tbl_nm}」({tbl_id}), KOSIS`.
+- 응답 끝에 출처 줄: `출처: {organization}, 「{survey_name}」 「{table_name}」({tbl_id}), KOSIS`.
 
 ## 8. ChartSpec
 ```python
@@ -216,3 +235,4 @@ ConversationState(
 | 버전 | 날짜 | 변경 |
 |---|---|---|
 | v0.1 | 2026-10-22 | 최초 작성. MetaRecord는 census-eda 정제본 필드 채택 |
+| v0.2 | 2026-10-22 | 기준 메타를 사용자 제공 인구 카탈로그(2,364표)로 교체. 2절을 TableCatalog/TableMeta/MetaRecord로 재구성, `tbl_nm→table_name`, `survey→survey_name` |

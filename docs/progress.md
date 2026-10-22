@@ -44,9 +44,9 @@
 | 2026-10-22 | 결정: 인구총조사 범위 | lead | `lead/interfaces` | 확정 (사용자 수락) | — | 수집·검색은 1,901건 전체, 골든셋 정답 표는 `in_1876=true`(1,876건) 안에서만. 세종시 2013 22건은 세종시 특별센서스 수집 시 `(org_id, tbl_id)`로 중복 제거하고 소속은 `stat_id`로 정함 |
 | 2026-10-22 | 결정: 기준 메타데이터 교체 | lead | `lead/interfaces` | 확정 (사용자 지시) | `docs/interfaces.md` v0.2 | 사용자 제공 `population_table_catalog.jsonl`(2,364표·14개 조사·기관 5곳, 원본 `population.xls`, 생성 `preprocess_population.py`)을 기준으로 삼는다. census-eda의 `meta_tables.jsonl`·EDA 보고서는 쓰지 않는다. API 클라이언트·getMeta 수집 코드와 로컬 캐시는 분류·항목·단위 보강용으로 유지 |
 | 2026-10-22 | 정정: 인구총조사 범위 | lead | `lead/interfaces` | 확정 | — | 카탈로그 기준 인구총조사는 1,876표. 이전 차이 25건은 카탈로그에서 `세종시 특별센서스` 22건, `주택총조사` 3건으로 이미 다른 조사에 속한다(이전 '시계열 연계' 해석은 STAT_ID 기반 추정). 골든셋 1,876 기준은 그대로, 검색 대상은 2,364표 전체 |
+| 2026-10-22 | 인구 카탈로그 반입 + 2,364표 getMeta 보강 | data | `data/catalog-import` | 리뷰 대기 | `docs/reports/data/2026-10-22_catalog-import.md` | 전처리 재현 바이트 일치(리드 확인), 보강 2,364/2,364 성공, 40,000셀 초과 642표, 단위 빈 표 1,470. `obj_values/` 33MB는 비커밋(.gitignore, 재생성 `python -m src.meta.enrich_meta`). `client.py` 절대경로 제거 |
 
 ## 결정 대기 (사용자)
 | 항목 | 선택지 | 리드 의견 |
 |---|---|---|
 | HCX API | 키 수령 여부, 엔드포인트·모델명 | 키 없으면 요약은 템플릿 문장으로 먼저 개발 |
-| 나머지 13개 조사 | 카탈로그로 목록은 확보됨 | 2,364표 전체 getMeta 보강을 data-engineer에게 위임 (`data/catalog-import`) |

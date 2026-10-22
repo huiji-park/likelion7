@@ -1,4 +1,4 @@
-# 모듈 인터페이스 계약 (v0.2)
+# 모듈 인터페이스 계약 (v0.3)
 
 > project-lead만 수정한다. 바꿔야 할 필드·시그니처가 있으면 보고서에 제안을 적고 리드에게 요청한다.
 > 작성: 2026-10-22 · 기준 메타: 사용자 제공 인구 카탈로그 `population_table_catalog.jsonl`(2,364표).
@@ -46,7 +46,7 @@
 | `catalog_periods` | list[{frequency_label, start, end}] | 주기별 수록기간. 한 표에 주기가 여러 개일 수 있다 |
 | `paths` | list[{level, path, list_id_path, list_id, kosis_table_url, source_row}] | 메뉴 경로. 한 표가 경로 2개 이상인 경우가 있다(7표) |
 
-주기 라벨 → 수치 조회 요청 코드(`prdSe`): `년→Y`, `5년→F`, `2년→F`, `월→M`, `분기→Q`, `반기→H`, `부정기→IR`, `IR→IR`. 5년 주기 표에 `Y`를 보내면 err 30이 난다. `2년`은 실제 호출로 확인 필요.
+주기 라벨 → 수치 조회 요청 코드(`prdSe`): `년→Y`, `5년→F`, `2년→F`, `월→M`, `분기→Q`, `반기→H`, `부정기→IR`, `IR→IR`. 5년·2년 주기 표에 `Y`를 보내면 err 30이 난다(`2년→F`는 `DT_182001_A046_2025`로 확인, 2년 주기 87표는 모두 영주귀국사할린동포실태조사).
 
 ### 2.2 TableMeta — API 보강 (`data/processed/table_meta.jsonl`, 1줄 1표)
 카탈로그에 없는 분류·항목·단위를 `getMeta`(type=ITM, 필요 시 TBL·PRD)로 보강한다.
@@ -60,14 +60,14 @@
 | `est_cells_per_period` | int | 시점 1개당 추정 셀 수(상한). 40,000 초과면 분류값 지정 필수 |
 | `send_de` | str \| null | 최종 갱신일 (`statisticsList` 또는 TBL 메타에서) |
 
-분류값 목록(코드·이름·`UP_ITM_ID`)은 `data/processed/obj_values/<org_id>_<tbl_id>.json` (형식 `{ "objL1": [{"code","nm","up"}...], ... }`).
+분류값 목록(코드·이름·`UP_ITM_ID`)은 `data/processed/obj_values/<org_id>_<tbl_id>.json` (형식 `{ "objL1": [{"code","nm","up"}...], ... }`). 2,364파일·33MB라 **커밋하지 않고** `python -m src.meta.enrich_meta`로 재생성한다(캐시가 있으면 수 분).
 
 ### 2.3 MetaRecord — 검색·조회 모듈이 쓰는 결합 레코드
 `src/meta/load.py :: load_meta() -> list[MetaRecord]` = 2.1 ⨝ 2.2 (기본키 조인) + 파생 필드:
 | 파생 필드 | 설명 |
 |---|---|
 | `prd_se_codes` | `catalog_periods`의 요청 코드 목록 |
-| `section`, `name_group` | 첫 경로의 4·5번째 단계(부문, 조사연도 폴더). **조사 연도는 표명이 아니라 경로에 있는 경우가 많다** |
+| `section`, `name_group` | 첫 경로의 4·5번째 단계(부문, 조사연도 폴더). **조사 연도는 표명이 아니라 경로에 있는 경우가 많다.** 경로가 짧으면 빈 문자열(`section` 40표, `name_group` 320표) |
 | `search_text` | NFKC 정규화 텍스트: 표명 + 조사명 + 모든 경로 + 분류명 + 항목명 |
 보강이 실패한 표(`meta_ok=false`)도 검색 대상에는 남기고, 조회 단계에서 `API_ERROR`로 처리한다.
 
@@ -92,10 +92,10 @@ DataRequest(
 | `row_key` | str | `f"{tbl_id}|{prd_de}|{itm_id}|{c1}|{c2}|..."` (빈 분류 생략). 분석·요약이 원본을 가리키는 키 |
 | `org_id`, `tbl_id`, `table_name` | str | |
 | `prd_de` | str | 시점: 년 `YYYY`, 월 `YYYYMM`, 분기 `YYYYQ`(KOSIS 원문 그대로) |
-| `prd_se_req`, `prd_se_resp` | str | 요청 코드와 응답 `PRD_SE`(5년 주기는 `A`로 돌아옴) — 둘 다 보관 |
+| `prd_se_req`, `prd_se_resp` | str | 요청 코드와 응답 `PRD_SE` — 둘 다 보관. 연 단위 표(Y·F 요청)는 응답이 모두 `A`다 |
 | `itm_id`, `itm_nm` | str | 항목 |
 | `dims` | list[{obj_nm, code, nm}] | C1..C8 순서대로 분류명·코드·값명 |
-| `unit` | str | 행 단위(`UNIT_NM`). 비어 있으면 메타 `items[].unit`으로 보충하고, 그래도 없으면 `""` |
+| `unit` | str | 행 단위. **응답 `UNIT_NM`을 우선**하고, 비어 있거나 None이면 메타 `items[].unit`으로 보충, 그래도 없으면 `""`(메타 단위가 빈 표 1,470개). 단위가 `""`인 값은 응답문에 단위를 지어내지 않고 "단위 미표기"로 쓴다 |
 | `raw` | str | 응답 `DT` 원문 |
 | `value` | float \| None | 숫자로 변환된 값. 숫자가 아니면 None |
 | `status` | str | `ok` / `dash`(`-`) / `symbol`(그 밖의 기호) / `empty` |
@@ -236,3 +236,4 @@ ConversationState(
 |---|---|---|
 | v0.1 | 2026-10-22 | 최초 작성. MetaRecord는 census-eda 정제본 필드 채택 |
 | v0.2 | 2026-10-22 | 기준 메타를 사용자 제공 인구 카탈로그(2,364표)로 교체. 2절을 TableCatalog/TableMeta/MetaRecord로 재구성, `tbl_nm→table_name`, `survey→survey_name` |
+| v0.3 | 2026-10-22 | `2년→F` 확정, `prd_se_resp` 설명 정정(연 단위 모두 `A`), 단위 우선순위·빈 단위 표기, `obj_values` 비커밋, 빈 section/name_group 명시 |

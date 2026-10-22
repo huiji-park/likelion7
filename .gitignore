@@ -6,6 +6,8 @@
 # data
 data/raw/
 data/cache/
+data/logs/
+data/processed/obj_values/
 
 # python
 __pycache__/
